@@ -1515,7 +1515,7 @@ class GenericMotor(Motor):
     @classmethod
     def from_dict(cls, data):
         return cls(
-            thrust_source=data["thrust_source"],
+            thrust_source=data["thrust"],
             burn_time=data["_burn_time"],
             chamber_radius=data["chamber_radius"],
             chamber_height=data["chamber_height"],
