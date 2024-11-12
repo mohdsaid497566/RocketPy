@@ -120,6 +120,42 @@ def test_environment_encoder(environment_name, request):
 
 
 @pytest.mark.parametrize(
+    "motor_name", ["cesaroni_m1670", "liquid_motor", "hybrid_motor", "generic_motor"]
+)
+def test_motor_encoder(motor_name, request):
+    """Test encoding a ``rocketpy.Motor``.
+
+    Parameters
+    ----------
+    motor_name : str
+        Name of the motor fixture to encode.
+    request : pytest.FixtureRequest
+        Pytest request object.
+    """
+    motor_to_encode = request.getfixturevalue(motor_name)
+
+    json_encoded = json.dumps(motor_to_encode, cls=RocketPyEncoder)
+
+    motor_loaded = json.loads(json_encoded, cls=RocketPyDecoder)
+
+    sample_times = np.linspace(*motor_to_encode.burn_time, 100)
+
+    assert np.allclose(
+        motor_to_encode.thrust(sample_times), motor_loaded.thrust(sample_times)
+    )
+    assert np.allclose(
+        motor_to_encode.total_mass(sample_times), motor_loaded.total_mass(sample_times)
+    )
+    assert np.allclose(
+        motor_to_encode.center_of_mass(sample_times),
+        motor_loaded.center_of_mass(sample_times),
+    )
+    assert np.allclose(
+        motor_to_encode.I_11(sample_times), motor_loaded.I_11(sample_times)
+    )
+
+
+@pytest.mark.parametrize(
     "rocket_name", ["calisto_robust", "calisto_liquid_modded", "calisto_hybrid_modded"]
 )
 def test_rocket_encoder(rocket_name, request):
@@ -138,7 +174,7 @@ def test_rocket_encoder(rocket_name, request):
 
     rocket_loaded = json.loads(json_encoded, cls=RocketPyDecoder)
 
-    sample_times = np.linspace(0, 3.9, 100)
+    sample_times = np.linspace(*rocket_to_encode.motor.burn_time, 100)
 
     assert np.allclose(
         rocket_to_encode.evaluate_total_mass()(sample_times),
