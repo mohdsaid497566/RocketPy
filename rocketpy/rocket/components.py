@@ -194,7 +194,7 @@ class Components:
         """
         self._components.sort(key=lambda x: x.position.z, reverse=reverse)
 
-    def to_dict(self, _):
+    def to_dict(self, include_outputs=False):  # pylint: disable=unused-argument
         return {
             "components": [
                 {"component": c.component, "position": c.position}
