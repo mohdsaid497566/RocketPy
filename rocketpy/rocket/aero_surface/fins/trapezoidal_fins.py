@@ -348,7 +348,7 @@ class TrapezoidalFins(Fins):
         self.prints.all()
         self.plots.all()
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         data = super().to_dict(include_outputs)
         data["tip_chord"] = self.tip_chord
 

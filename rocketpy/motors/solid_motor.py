@@ -744,7 +744,7 @@ class SolidMotor(Motor):
         """
         self.plots.draw(filename=filename)
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         data = super().to_dict(include_outputs)
         data.update(
             {

@@ -251,7 +251,7 @@ class Parachute:
         self.info()
         # self.plots.all() # Parachutes still doesn't have plots
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         trigger = self.trigger
 
         if callable(self.trigger) and not isinstance(self.trigger, Function):

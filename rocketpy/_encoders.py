@@ -14,7 +14,7 @@ class RocketPyEncoder(json.JSONEncoder):
     different types of objects to a JSON supported format."""
 
     def __init__(self, *args, **kwargs):
-        self.include_outputs = kwargs.pop("include_outputs", True)
+        self.include_outputs = kwargs.pop("include_outputs", False)
         super().__init__(*args, **kwargs)
 
     def default(self, o):

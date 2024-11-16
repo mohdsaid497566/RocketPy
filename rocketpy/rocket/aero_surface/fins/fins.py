@@ -426,7 +426,7 @@ class Fins(AeroSurface):
         M3 = M3_forcing - M3_damping
         return R1, R2, R3, M1, M2, M3
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         data = {
             "n": self.n,
             "root_chord": self.root_chord,

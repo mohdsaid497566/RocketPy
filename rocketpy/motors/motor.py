@@ -1083,7 +1083,7 @@ class Motor(ABC):
             # Write last line
             file.write(f"{self.thrust.source[-1, 0]:.4f} {0:.3f}\n")
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         thrust_source = self.thrust_source
 
         if isinstance(thrust_source, str):
@@ -1566,7 +1566,7 @@ class GenericMotor(Motor):
         self.prints.all()
         self.plots.all()
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         data = super().to_dict(include_outputs)
         data.update(
             {

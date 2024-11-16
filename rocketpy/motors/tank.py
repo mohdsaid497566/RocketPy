@@ -505,7 +505,7 @@ class Tank(ABC):
         self.prints.all()
         self.plots.all()
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         data = {
             "name": self.name,
             "geometry": self.geometry,
@@ -886,7 +886,7 @@ class MassFlowRateBasedTank(Tank):
             *self.flux_time, self.discretize, "linear"
         )
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         data = super().to_dict(include_outputs)
         data.update(
             {
@@ -1113,7 +1113,7 @@ class UllageBasedTank(Tank):
         discretize parameter."""
         self.ullage.set_discrete(*self.flux_time, self.discretize, "linear")
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         data = super().to_dict(include_outputs)
         data.update({"ullage": self.ullage})
         return data
@@ -1341,7 +1341,7 @@ class LevelBasedTank(Tank):
         """
         self.liquid_level.set_discrete(*self.flux_time, self.discretize, "linear")
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         data = super().to_dict(include_outputs)
         data.update({"liquid_height": self.liquid_level})
         return data
@@ -1600,7 +1600,7 @@ class MassBasedTank(Tank):
         self.liquid_mass.set_discrete(*self.flux_time, self.discretize, "linear")
         self.gas_mass.set_discrete(*self.flux_time, self.discretize, "linear")
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         data = super().to_dict(include_outputs)
         data.update(
             {

@@ -3416,7 +3416,7 @@ class Flight:
             yield i, node_list[i]
             i += 1
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         data = {
             "rocket": self.rocket,
             "env": self.env,

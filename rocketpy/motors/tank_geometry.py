@@ -345,7 +345,7 @@ class TankGeometry:
         self._geometry[domain] = Function(radius_function)
         self.radius = PiecewiseFunction(self._geometry, "Height (m)", "radius (m)")
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         data = {
             "geometry": {
                 str(domain): function for domain, function in self._geometry.items()
@@ -441,7 +441,7 @@ class CylindricalTank(TankGeometry):
         else:
             raise ValueError("Tank already has caps.")
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         data = {
             "radius": self.__input_radius,
             "height": self.height,
@@ -481,7 +481,7 @@ class SphericalTank(TankGeometry):
         self.__input_radius = radius
         self.add_geometry((-radius, radius), lambda h: (radius**2 - h**2) ** 0.5)
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         data = {"radius": self.__input_radius}
 
         if include_outputs:

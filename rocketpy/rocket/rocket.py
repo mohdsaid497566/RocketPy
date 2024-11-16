@@ -1894,7 +1894,7 @@ class Rocket:
         self.info()
         self.plots.all()
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         rocket_dict = {
             "radius": self.radius,
             "mass": self.mass,

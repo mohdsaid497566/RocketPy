@@ -205,7 +205,7 @@ class Tail(AeroSurface):
         self.prints.all()
         self.plots.all()
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         data = {
             "top_radius": self._top_radius,
             "bottom_radius": self._bottom_radius,

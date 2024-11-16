@@ -2754,7 +2754,7 @@ class Environment:
         arc_seconds = (remainder * 60 - arc_minutes) * 60
         return degrees, arc_minutes, arc_seconds
 
-    def to_dict(self, include_outputs=True):
+    def to_dict(self, include_outputs=False):
         env_dict = {
             "gravity": self.gravity,
             "date": self.date,
