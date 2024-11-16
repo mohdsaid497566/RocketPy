@@ -95,8 +95,9 @@ class RocketPyDecoder(json.JSONDecoder):
 
 def get_class_signature(obj):
     """Returns the signature of a class in the form of a string.
-    The signature is an importable string that can be used to import
-    the class by its module.
+    The signature is a dictionary with the module and name of the
+    object's class as strings.
+
 
     Parameters
     ----------
@@ -105,7 +106,7 @@ def get_class_signature(obj):
 
     Returns
     -------
-    str
+    dict
         Signature of the class.
     """
     class_ = obj.__class__
@@ -115,11 +116,12 @@ def get_class_signature(obj):
 
 
 def get_class_from_signature(signature):
-    """Returns the class by importing its signature.
+    """Returns the class by importing its signature and
+    importing its module.
 
     Parameters
     ----------
-    signature : str
+    signature : dict
         Signature of the class.
 
     Returns
