@@ -2763,7 +2763,7 @@ class Environment:
             "elevation": self.elevation,
             "datum": self.datum,
             "timezone": self.timezone,
-            "_max_expected_height": self.max_expected_height,
+            "max_expected_height": self.max_expected_height,
             "atmospheric_model_type": self.atmospheric_model_type,
             "pressure": self.pressure,
             "barometric_height": self.barometric_height,
@@ -2792,7 +2792,7 @@ class Environment:
             elevation=data["elevation"],
             datum=data["datum"],
             timezone=data["timezone"],
-            max_expected_height=data["_max_expected_height"],
+            max_expected_height=data["max_expected_height"],
         )
         atmospheric_model = data["atmospheric_model_type"]
 
@@ -2816,7 +2816,7 @@ class Environment:
             env.__set_wind_direction_function(data["wind_direction"])
             env.__set_wind_speed_function(data["wind_speed"])
             env.elevation = data["elevation"]
-            env.max_expected_height = data["_max_expected_height"]
+            env.max_expected_height = data["max_expected_height"]
 
             if atmospheric_model in ["windy", "forecast", "reanalysis", "ensemble"]:
                 env.atmospheric_model_init_date = data["atmospheric_model_init_date"]
